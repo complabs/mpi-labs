@@ -1,5 +1,8 @@
 originals/
 *.out
 *.gol
+*.workspace
+*.cbp
+*.layout
 */Thumbs.db
 
