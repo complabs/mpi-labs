@@ -1,1 +1,5 @@
 originals/
+*.out
+*.gol
+*/Thumbs.db
+
