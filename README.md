@@ -1,5 +1,5 @@
 
-# C++ for MPI Exercises 
+# C++ solutions for PDC MPI Exercises 
 
 https://github.com/PDC-support/mpi-lab-exercises
 
