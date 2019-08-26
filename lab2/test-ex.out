@@ -4,39 +4,39 @@
 
 ============ Lab 2 Exercise 1: Calculating pi using collectives
 
+MPI task 16 has started...
+MPI task 18 has started...
+MPI task 30 has started...
 MPI task 0 has started...
 Using 32 tasks to compute pi
 MPI task 12 has started...
-MPI task 1 has started...
-MPI task 2 has started...
-MPI task 8 has started...
-MPI task 9 has started...
-MPI task 17 has started...
-MPI task 18 has started...
 MPI task 23 has started...
-MPI task 29 has started...
-MPI task 3 has started...
 MPI task 6 has started...
-MPI task 7 has started...
 MPI task 11 has started...
-MPI task 15 has started...
-MPI task 22 has started...
-MPI task 24 has started...
-MPI task 26 has started...
-MPI task 27 has started...
-MPI task 28 has started...
-MPI task 21 has started...
-MPI task 31 has started...
-MPI task 5 has started...
-MPI task 16 has started...
-MPI task 19 has started...
-MPI task 25 has started...
-MPI task 14 has started...
-MPI task 30 has started...
-MPI task 4 has started...
-MPI task 10 has started...
-MPI task 13 has started...
 MPI task 20 has started...
+MPI task 21 has started...
+MPI task 25 has started...
+MPI task 2 has started...
+MPI task 7 has started...
+MPI task 9 has started...
+MPI task 15 has started...
+MPI task 13 has started...
+MPI task 24 has started...
+MPI task 19 has started...
+MPI task 31 has started...
+MPI task 3 has started...
+MPI task 8 has started...
+MPI task 28 has started...
+MPI task 10 has started...
+MPI task 29 has started...
+MPI task 5 has started...
+MPI task 22 has started...
+MPI task 1 has started...
+MPI task 14 has started...
+MPI task 26 has started...
+MPI task 4 has started...
+MPI task 17 has started...
+MPI task 27 has started...
 50000 throws, average pi = 3.1528
 100000 throws, average pi = 3.1528
 150000 throws, average pi = 3.1490666666667
@@ -112,208 +112,150 @@ MPI task 20 has started...
 30: Received 77029
 30: Forwarded 77030
 31: Received 77030
-[1566841668.222843] [t02n21:5051 :0]          mpool.c:38   UCX  WARN  object 0x7f78456a2fc0 was not returned to mpool ucp_am_bufs
+[1566842696.943496] [t02n21:7589 :0]          mpool.c:38   UCX  WARN  object 0x7f276046cfc0 was not returned to mpool ucp_am_bufs
 
 ============ Lab 2 Exercise 2.2: Sending data using non-blocking with race
 
-0: Sending 77000
-10: After MPI_Irecv (nowait) -1
-10: Forwarded 0
-21: After MPI_Irecv (nowait) -1
-21: Forwarded 0
-27: After MPI_Irecv (nowait) -1
-27: Forwarded 0
-6: After MPI_Irecv (nowait) -1
-6: Forwarded 0
-16: After MPI_Irecv (nowait) -1
-16: Forwarded 0
-18: After MPI_Irecv (nowait) -1
-18: Forwarded 0
-30: After MPI_Irecv (nowait) -1
-30: Forwarded 0
 14: After MPI_Irecv (nowait) -1
 14: Forwarded 0
-22: After MPI_Irecv (nowait) -1
-22: Forwarded 0
-23: After MPI_Irecv (nowait) -1
-23: Forwarded 0
-29: After MPI_Irecv (nowait) -1
-29: Forwarded 0
-31: After MPI_Irecv (nowait) -1
-3: After MPI_Irecv (nowait) -1
-3: Forwarded 0
+19: After MPI_Irecv (nowait) -1
+19: Forwarded 0
+27: After MPI_Irecv (nowait) -1
+27: Forwarded 0
 5: After MPI_Irecv (nowait) -1
 5: Forwarded 0
+16: After MPI_Irecv (nowait) -1
+16: Forwarded 0
+24: After MPI_Irecv (nowait) -1
+24: Forwarded 0
+28: After MPI_Irecv (nowait) -1
+28: Forwarded 0
+31: After MPI_Irecv (nowait) -1
+0: Sending 77000
 8: After MPI_Irecv (nowait) -1
 8: Forwarded 0
 11: After MPI_Irecv (nowait) -1
 11: Forwarded 0
-13: After MPI_Irecv (nowait) -1
-13: Forwarded 0
-19: After MPI_Irecv (nowait) -1
-19: Forwarded 0
-1: After MPI_Irecv (nowait) -1
-1: Forwarded 0
-2: After MPI_Irecv (nowait) -1
-2: Forwarded 0
-7: After MPI_Irecv (nowait) -1
-7: Forwarded 0
-24: After MPI_Irecv (nowait) -1
-24: Forwarded 0
-25: After MPI_Irecv (nowait) -1
-25: Forwarded 0
-4: After MPI_Irecv (nowait) -1
-4: Forwarded 0
 12: After MPI_Irecv (nowait) -1
 12: Forwarded 0
-20: After MPI_Irecv (nowait) -1
-20: Forwarded 0
-9: After MPI_Irecv (nowait) -1
-9: Forwarded 0
-15: After MPI_Irecv (nowait) -1
-15: Forwarded 0
+13: After MPI_Irecv (nowait) -1
+13: Forwarded 0
 17: After MPI_Irecv (nowait) -1
 17: Forwarded 0
-28: After MPI_Irecv (nowait) -1
-28: Forwarded 0
+1: After MPI_Irecv (nowait) -1
+1: Forwarded 0
+18: After MPI_Irecv (nowait) -1
+18: Forwarded 0
+20: After MPI_Irecv (nowait) -1
+20: Forwarded 0
+30: After MPI_Irecv (nowait) -1
+2: After MPI_Irecv (nowait) -1
+2: Forwarded 0
+3: After MPI_Irecv (nowait) -1
+3: Forwarded 0
+7: After MPI_Irecv (nowait) -1
+7: Forwarded 0
+10: After MPI_Irecv (nowait) -1
+10: Forwarded 0
+21: After MPI_Irecv (nowait) -1
+21: Forwarded 0
+22: After MPI_Irecv (nowait) -1
+22: Forwarded 0
+23: After MPI_Irecv (nowait) -1
+23: Forwarded 0
 26: After MPI_Irecv (nowait) -1
+29: After MPI_Irecv (nowait) -1
+29: Forwarded 0
+30: Forwarded 0
+4: After MPI_Irecv (nowait) -1
+4: Forwarded 0
+9: After MPI_Irecv (nowait) -1
+9: Forwarded 0
+25: After MPI_Irecv (nowait) -1
+25: Forwarded 0
+15: After MPI_Irecv (nowait) -1
+15: Forwarded 0
 26: Forwarded 0
-[1566841669.187498] [t02n21:5350 :0]          mpool.c:38   UCX  WARN  object 0x7f091b7ecfc0 was not returned to mpool ucp_am_bufs
-[1566841669.189533] [t02n21:5350 :0]          mpool.c:38   UCX  WARN  object 0x20aef40 was not returned to mpool ucp_requests
-[1566841669.191454] [t02n21:5370 :0]          mpool.c:38   UCX  WARN  object 0x19acfc0 was not returned to mpool ucp_requests
-[1566841669.191932] [t02n21:5366 :0]          mpool.c:38   UCX  WARN  object 0x167bf80 was not returned to mpool ucp_requests
-[1566841669.191971] [t02n21:5380 :0]          mpool.c:38   UCX  WARN  object 0x1c2cfc0 was not returned to mpool ucp_requests
-[1566841669.192383] [t02n21:5357 :0]          mpool.c:38   UCX  WARN  object 0x1206fc0 was not returned to mpool ucp_requests
-[1566841669.192424] [t02n21:5364 :0]          mpool.c:38   UCX  WARN  object 0x181c080 was not returned to mpool ucp_requests
-[1566841669.192454] [t02n21:5356 :0]          mpool.c:38   UCX  WARN  object 0xee4fc0 was not returned to mpool ucp_requests
-[1566841669.192652] [t02n21:5362 :0]          mpool.c:38   UCX  WARN  object 0x1a41fc0 was not returned to mpool ucp_requests
-[1566841669.192844] [t02n21:5354 :0]          mpool.c:38   UCX  WARN  object 0x211dfc0 was not returned to mpool ucp_requests
-[1566841669.193002] [t02n21:5359 :0]          mpool.c:38   UCX  WARN  object 0x237ffc0 was not returned to mpool ucp_requests
-[1566841669.193196] [t02n21:5352 :0]          mpool.c:38   UCX  WARN  object 0x1e22140 was not returned to mpool ucp_requests
-[1566841669.193462] [t02n21:5375 :0]          mpool.c:38   UCX  WARN  object 0x17cffc0 was not returned to mpool ucp_requests
-[1566841669.193665] [t02n21:5376 :0]          mpool.c:38   UCX  WARN  object 0x109afc0 was not returned to mpool ucp_requests
-[1566841669.193939] [t02n21:5355 :0]          mpool.c:38   UCX  WARN  object 0x997fc0 was not returned to mpool ucp_requests
-[1566841669.194491] [t02n21:5379 :0]          mpool.c:38   UCX  WARN  object 0x1a58fc0 was not returned to mpool ucp_requests
-[1566841669.194702] [t02n21:5363 :0]          mpool.c:38   UCX  WARN  object 0x1f96fc0 was not returned to mpool ucp_requests
-[1566841669.194777] [t02n21:5372 :0]          mpool.c:38   UCX  WARN  object 0x180ffc0 was not returned to mpool ucp_requests
-[1566841669.194890] [t02n21:5351 :0]          mpool.c:38   UCX  WARN  object 0x15ecfc0 was not returned to mpool ucp_requests
-[1566841669.194978] [t02n21:5368 :0]          mpool.c:38   UCX  WARN  object 0xc22f40 was not returned to mpool ucp_requests
-[1566841669.195351] [t02n21:5358 :0]          mpool.c:38   UCX  WARN  object 0x142cf40 was not returned to mpool ucp_requests
-[1566841669.195408] [t02n21:5377 :0]          mpool.c:38   UCX  WARN  object 0xf34fc0 was not returned to mpool ucp_requests
-[1566841669.195445] [t02n21:5365 :0]          mpool.c:38   UCX  WARN  object 0x18140c0 was not returned to mpool ucp_requests
-[1566841669.195451] [t02n21:5371 :0]          mpool.c:38   UCX  WARN  object 0xe59140 was not returned to mpool ucp_requests
-[1566841669.195589] [t02n21:5373 :0]          mpool.c:38   UCX  WARN  object 0x2338fc0 was not returned to mpool ucp_requests
-[1566841669.195606] [t02n21:5374 :0]          mpool.c:38   UCX  WARN  object 0x1c5afc0 was not returned to mpool ucp_requests
-[1566841669.195634] [t02n21:5367 :0]          mpool.c:38   UCX  WARN  object 0x223bfc0 was not returned to mpool ucp_requests
-[1566841669.195838] [t02n21:5361 :0]          mpool.c:38   UCX  WARN  object 0x1947080 was not returned to mpool ucp_requests
-[1566841669.195880] [t02n21:5378 :0]          mpool.c:38   UCX  WARN  object 0x13f7f40 was not returned to mpool ucp_requests
-[1566841669.196169] [t02n21:5360 :0]          mpool.c:38   UCX  WARN  object 0x1a50fc0 was not returned to mpool ucp_requests
-[1566841669.196445] [t02n21:5353 :0]          mpool.c:38   UCX  WARN  object 0xfc5fc0 was not returned to mpool ucp_requests
-[1566841669.197294] [t02n21:5369 :0]          mpool.c:38   UCX  WARN  object 0xfddfc0 was not returned to mpool ucp_requests
+6: After MPI_Irecv (nowait) -1
+6: Forwarded 0
+[1566842697.875146] [t02n21:7899 :0]          mpool.c:38   UCX  WARN  object 0x1a8e380 was not returned to mpool ucp_requests
+[1566842697.877848] [t02n21:7885 :0]          mpool.c:38   UCX  WARN  object 0x7fe8afbedfc0 was not returned to mpool ucp_am_bufs
+[1566842697.878165] [t02n21:7906 :0]          mpool.c:38   UCX  WARN  object 0x143a300 was not returned to mpool ucp_requests
+[1566842697.878689] [t02n21:7891 :0]          mpool.c:38   UCX  WARN  object 0x2174300 was not returned to mpool ucp_requests
+[1566842697.878713] [t02n21:7896 :0]          mpool.c:38   UCX  WARN  object 0x22f2200 was not returned to mpool ucp_requests
+[1566842697.878736] [t02n21:7894 :0]          mpool.c:38   UCX  WARN  object 0x23e1300 was not returned to mpool ucp_requests
+[1566842697.879385] [t02n21:7888 :0]          mpool.c:38   UCX  WARN  object 0x1337340 was not returned to mpool ucp_requests
+[1566842697.879374] [t02n21:7893 :0]          mpool.c:38   UCX  WARN  object 0x1ae7300 was not returned to mpool ucp_requests
+[1566842697.879416] [t02n21:7889 :0]          mpool.c:38   UCX  WARN  object 0xde5300 was not returned to mpool ucp_requests
+[1566842697.879449] [t02n21:7890 :0]          mpool.c:38   UCX  WARN  object 0x1f24300 was not returned to mpool ucp_requests
+[1566842697.879455] [t02n21:7903 :0]          mpool.c:38   UCX  WARN  object 0x19f5300 was not returned to mpool ucp_requests
+[1566842697.879558] [t02n21:7900 :0]          mpool.c:38   UCX  WARN  object 0x17f2340 was not returned to mpool ucp_requests
+[1566842697.879733] [t02n21:7904 :0]          mpool.c:38   UCX  WARN  object 0xc75300 was not returned to mpool ucp_requests
+[1566842697.879789] [t02n21:7916 :0]          mpool.c:38   UCX  WARN  object 0x1551300 was not returned to mpool ucp_requests
+[1566842697.879892] [t02n21:7895 :0]          mpool.c:38   UCX  WARN  object 0x247c280 was not returned to mpool ucp_requests
+[1566842697.880425] [t02n21:7915 :0]          mpool.c:38   UCX  WARN  object 0x8ae200 was not returned to mpool ucp_requests
+[1566842697.880656] [t02n21:7901 :0]          mpool.c:38   UCX  WARN  object 0xc29300 was not returned to mpool ucp_requests
+[1566842697.880731] [t02n21:7914 :0]          mpool.c:38   UCX  WARN  object 0x21f9200 was not returned to mpool ucp_requests
+[1566842697.880757] [t02n21:7897 :0]          mpool.c:38   UCX  WARN  object 0x224b300 was not returned to mpool ucp_requests
+[1566842697.881141] [t02n21:7907 :0]          mpool.c:38   UCX  WARN  object 0x20b5300 was not returned to mpool ucp_requests
+[1566842697.881462] [t02n21:7898 :0]          mpool.c:38   UCX  WARN  object 0x2435200 was not returned to mpool ucp_requests
+[1566842697.881756] [t02n21:7885 :0]          mpool.c:38   UCX  WARN  object 0xe08200 was not returned to mpool ucp_requests
+[1566842697.881901] [t02n21:7892 :0]          mpool.c:38   UCX  WARN  object 0x90c200 was not returned to mpool ucp_requests
+[1566842697.882185] [t02n21:7911 :0]          mpool.c:38   UCX  WARN  object 0x12a5200 was not returned to mpool ucp_requests
+[1566842697.882182] [t02n21:7905 :0]          mpool.c:38   UCX  WARN  object 0x19042c0 was not returned to mpool ucp_requests
+[1566842697.882448] [t02n21:7913 :0]          mpool.c:38   UCX  WARN  object 0x2176080 was not returned to mpool ucp_requests
+[1566842697.882445] [t02n21:7908 :0]          mpool.c:38   UCX  WARN  object 0x10f4300 was not returned to mpool ucp_requests
+[1566842697.882651] [t02n21:7909 :0]          mpool.c:38   UCX  WARN  object 0x2327280 was not returned to mpool ucp_requests
+[1566842697.882720] [t02n21:7887 :0]          mpool.c:38   UCX  WARN  object 0x1128300 was not returned to mpool ucp_requests
+[1566842697.883197] [t02n21:7902 :0]          mpool.c:38   UCX  WARN  object 0x1cd0200 was not returned to mpool ucp_requests
+[1566842697.884675] [t02n21:7910 :0]          mpool.c:38   UCX  WARN  object 0x155afc0 was not returned to mpool ucp_requests
+[1566842697.885223] [t02n21:7912 :0]          mpool.c:38   UCX  WARN  object 0x93b0c0 was not returned to mpool ucp_requests
 
 ============ Lab 2 Exercise 3: Finding pi using non-blocking communications
 
-MPI task 3 has started...
-MPI task 18 has started...
-MPI task 22 has started...
-MPI task 29 has started...
-MPI task 2 has started...
-MPI task 10 has started...
 MPI task 1 has started...
-MPI task 11 has started...
-MPI task 14 has started...
-MPI task 25 has started...
-MPI task 30 has started...
-MPI task 4 has started...
+MPI task 10 has started...
+MPI task 15 has started...
+MPI task 31 has started...
 MPI task 0 has started...
 Using 32 tasks to compute pi
-MPI task 19 has started...
-MPI task 20 has started...
-MPI task 8 has started...
+MPI task 4 has started...
 MPI task 5 has started...
 MPI task 7 has started...
-MPI task 24 has started...
-MPI task 13 has started...
-MPI task 17 has started...
+MPI task 8 has started...
 MPI task 9 has started...
-MPI task 15 has started...
-MPI task 21 has started...
-MPI task 27 has started...
-MPI task 26 has started...
-MPI task 23 has started...
-MPI task 28 has started...
-MPI task 31 has started...
+MPI task 14 has started...
+MPI task 19 has started...
+MPI task 22 has started...
+MPI task 2 has started...
+MPI task 6 has started...
 MPI task 12 has started...
 MPI task 16 has started...
-MPI task 6 has started...
+MPI task 17 has started...
+MPI task 24 has started...
+MPI task 25 has started...
+MPI task 26 has started...
+MPI task 29 has started...
+MPI task 13 has started...
+MPI task 21 has started...
+MPI task 3 has started...
+MPI task 11 has started...
+MPI task 27 has started...
+MPI task 28 has started...
+MPI task 30 has started...
+MPI task 23 has started...
+MPI task 18 has started...
+MPI task 20 has started...
 50000 throws, average pi = 3.1528
 100000 throws, average pi = 3.1528
 150000 throws, average pi = 3.1490666666667
-200000 throws, average pi = 3.1491
-250000 throws, average pi = 3.1461675
-300000 throws, average pi = 3.1442245833333
-350000 throws, average pi = 3.1437246428571
-400000 throws, average pi = 3.142910625
-450000 throws, average pi = 3.1431677777778
-500000 throws, average pi = 3.143027
-[1566841670.198000] [t02n21:5663 :0]          mpool.c:38   UCX  WARN  object 0xf5aac0 was not returned to mpool ucp_requests
-[1566841670.197989] [t02n21:5666 :0]          mpool.c:38   UCX  WARN  object 0x1f62980 was not returned to mpool ucp_requests
-[1566841670.198011] [t02n21:5666 :0]          mpool.c:38   UCX  WARN  object 0x1f62b40 was not returned to mpool ucp_requests
-[1566841670.198019] [t02n21:5666 :0]          mpool.c:38   UCX  WARN  object 0x1f62d00 was not returned to mpool ucp_requests
-[1566841670.198026] [t02n21:5666 :0]          mpool.c:38   UCX  WARN  object 0x1f62ec0 was not returned to mpool ucp_requests
-[1566841670.198347] [t02n21:5671 :0]          mpool.c:38   UCX  WARN  object 0x953b40 was not returned to mpool ucp_requests
-[1566841670.198371] [t02n21:5671 :0]          mpool.c:38   UCX  WARN  object 0x953d00 was not returned to mpool ucp_requests
-[1566841670.198380] [t02n21:5671 :0]          mpool.c:38   UCX  WARN  object 0x953ec0 was not returned to mpool ucp_requests
-[1566841670.198425] [t02n21:5653 :0]          mpool.c:38   UCX  WARN  object 0x26fab80 was not returned to mpool ucp_requests
-[1566841670.198448] [t02n21:5653 :0]          mpool.c:38   UCX  WARN  object 0x26fad40 was not returned to mpool ucp_requests
-[1566841670.198457] [t02n21:5653 :0]          mpool.c:38   UCX  WARN  object 0x26faf00 was not returned to mpool ucp_requests
-[1566841670.198648] [t02n21:5651 :0]          mpool.c:38   UCX  WARN  object 0x1da9000 was not returned to mpool ucp_requests
-[1566841670.198854] [t02n21:5659 :0]          mpool.c:38   UCX  WARN  object 0x279ac80 was not returned to mpool ucp_requests
-[1566841670.198884] [t02n21:5659 :0]          mpool.c:38   UCX  WARN  object 0x279ae40 was not returned to mpool ucp_requests
-[1566841670.198894] [t02n21:5659 :0]          mpool.c:38   UCX  WARN  object 0x279b000 was not returned to mpool ucp_requests
-[1566841670.199511] [t02n21:5663 :0]          mpool.c:38   UCX  WARN  object 0xf5ac80 was not returned to mpool ucp_requests
-[1566841670.199531] [t02n21:5663 :0]          mpool.c:38   UCX  WARN  object 0xf5ae40 was not returned to mpool ucp_requests
-[1566841670.199633] [t02n21:5662 :0]          mpool.c:38   UCX  WARN  object 0xb2fb80 was not returned to mpool ucp_requests
-[1566841670.199654] [t02n21:5662 :0]          mpool.c:38   UCX  WARN  object 0xb2fd40 was not returned to mpool ucp_requests
-[1566841670.199662] [t02n21:5662 :0]          mpool.c:38   UCX  WARN  object 0xb2ff00 was not returned to mpool ucp_requests
-[1566841670.199771] [t02n21:5674 :0]          mpool.c:38   UCX  WARN  object 0xb0fec0 was not returned to mpool ucp_requests
-[1566841670.200017] [t02n21:5669 :0]          mpool.c:38   UCX  WARN  object 0x2733940 was not returned to mpool ucp_requests
-[1566841670.200052] [t02n21:5669 :0]          mpool.c:38   UCX  WARN  object 0x2733b00 was not returned to mpool ucp_requests
-[1566841670.200066] [t02n21:5669 :0]          mpool.c:38   UCX  WARN  object 0x2733cc0 was not returned to mpool ucp_requests
-[1566841670.200077] [t02n21:5669 :0]          mpool.c:38   UCX  WARN  object 0x2733e80 was not returned to mpool ucp_requests
-[1566841670.200509] [t02n21:5678 :0]          mpool.c:38   UCX  WARN  object 0x2551900 was not returned to mpool ucp_requests
-[1566841670.200535] [t02n21:5678 :0]          mpool.c:38   UCX  WARN  object 0x2551ac0 was not returned to mpool ucp_requests
-[1566841670.200545] [t02n21:5678 :0]          mpool.c:38   UCX  WARN  object 0x2551c80 was not returned to mpool ucp_requests
-[1566841670.200553] [t02n21:5678 :0]          mpool.c:38   UCX  WARN  object 0x2551e40 was not returned to mpool ucp_requests
-[1566841670.200774] [t02n21:5673 :0]          mpool.c:38   UCX  WARN  object 0x1e2c740 was not returned to mpool ucp_requests
-[1566841670.200809] [t02n21:5673 :0]          mpool.c:38   UCX  WARN  object 0x1e2c900 was not returned to mpool ucp_requests
-[1566841670.200824] [t02n21:5673 :0]          mpool.c:38   UCX  WARN  object 0x1e2cac0 was not returned to mpool ucp_requests
-[1566841670.200836] [t02n21:5673 :0]          mpool.c:38   UCX  WARN  object 0x1e2cc80 was not returned to mpool ucp_requests
-[1566841670.200845] [t02n21:5673 :0]          mpool.c:38   UCX  WARN  object 0x1e2ce40 was not returned to mpool ucp_requests
-[1566841670.201186] [t02n21:5667 :0]          mpool.c:38   UCX  WARN  object 0x1a3ec80 was not returned to mpool ucp_requests
-[1566841670.201226] [t02n21:5667 :0]          mpool.c:38   UCX  WARN  object 0x1a3ee40 was not returned to mpool ucp_requests
-[1566841670.201303] [t02n21:5657 :0]          mpool.c:38   UCX  WARN  object 0xb57c80 was not returned to mpool ucp_requests
-[1566841670.201324] [t02n21:5657 :0]          mpool.c:38   UCX  WARN  object 0xb57e40 was not returned to mpool ucp_requests
-[1566841670.201333] [t02n21:5657 :0]          mpool.c:38   UCX  WARN  object 0xb58000 was not returned to mpool ucp_requests
-[1566841670.201367] [t02n21:5668 :0]          mpool.c:38   UCX  WARN  object 0x27c1940 was not returned to mpool ucp_requests
-[1566841670.201410] [t02n21:5668 :0]          mpool.c:38   UCX  WARN  object 0x27c1b00 was not returned to mpool ucp_requests
-[1566841670.201430] [t02n21:5668 :0]          mpool.c:38   UCX  WARN  object 0x27c1cc0 was not returned to mpool ucp_requests
-[1566841670.201445] [t02n21:5668 :0]          mpool.c:38   UCX  WARN  object 0x27c1e80 was not returned to mpool ucp_requests
-[1566841670.201594] [t02n21:5672 :0]          mpool.c:38   UCX  WARN  object 0x183f740 was not returned to mpool ucp_requests
-[1566841670.201641] [t02n21:5672 :0]          mpool.c:38   UCX  WARN  object 0x183f900 was not returned to mpool ucp_requests
-[1566841670.201663] [t02n21:5672 :0]          mpool.c:38   UCX  WARN  object 0x183fac0 was not returned to mpool ucp_requests
-[1566841670.201679] [t02n21:5672 :0]          mpool.c:38   UCX  WARN  object 0x183fc80 was not returned to mpool ucp_requests
-[1566841670.201695] [t02n21:5672 :0]          mpool.c:38   UCX  WARN  object 0x183fe40 was not returned to mpool ucp_requests
-[1566841670.202075] [t02n21:5664 :0]          mpool.c:38   UCX  WARN  object 0x264b5c0 was not returned to mpool ucp_requests
-[1566841670.202095] [t02n21:5664 :0]          mpool.c:38   UCX  WARN  object 0x264b780 was not returned to mpool ucp_requests
-[1566841670.202101] [t02n21:5664 :0]          mpool.c:38   UCX  WARN  object 0x264b940 was not returned to mpool ucp_requests
-[1566841670.202107] [t02n21:5664 :0]          mpool.c:38   UCX  WARN  object 0x264bb00 was not returned to mpool ucp_requests
-[1566841670.202113] [t02n21:5664 :0]          mpool.c:38   UCX  WARN  object 0x264bcc0 was not returned to mpool ucp_requests
-[1566841670.202118] [t02n21:5664 :0]          mpool.c:38   UCX  WARN  object 0x264be80 was not returned to mpool ucp_requests
-[1566841670.203078] [t02n21:5679 :0]          mpool.c:38   UCX  WARN  object 0xfc3e40 was not returned to mpool ucp_requests
-[1566841670.203253] [t02n21:5650 :0]          mpool.c:38   UCX  WARN  object 0x1ca4b80 was not returned to mpool ucp_requests
-[1566841670.203285] [t02n21:5650 :0]          mpool.c:38   UCX  WARN  object 0x1ca4d40 was not returned to mpool ucp_requests
-[1566841670.203297] [t02n21:5650 :0]          mpool.c:38   UCX  WARN  object 0x1ca4f00 was not returned to mpool ucp_requests
+200000 throws, average pi = 3.14916
+250000 throws, average pi = 3.146064
+300000 throws, average pi = 3.1438
+350000 throws, average pi = 3.1432457142857
+400000 throws, average pi = 3.14199
+450000 throws, average pi = 3.1428444444444
+500000 throws, average pi = 3.142736
 
 ============ Lab 2 Exercise 4.1: Parallel search using collectives
 
@@ -341,13 +283,13 @@ Lab2 Game of Life: NI = 200, NJ = 200, NSTEPS = 500, MPI world size = 10
 Saved life-6.gol
 Saved life-7.gol
 Saved life-8.gol
-Saved life-5.gol
-Saved life-0.gol
 Saved life-9.gol
+Saved life-0.gol
 Saved life-1.gol
 Saved life-2.gol
 Saved life-3.gol
 Saved life-4.gol
+Saved life-5.gol
 Number of live cells = 1886
 
 
