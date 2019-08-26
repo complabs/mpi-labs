@@ -1,0 +1,76 @@
+/////////////////////////////////////////////////////////////////////////
+//                              LAB  3                                 //
+/////////////////////////////////////////////////////////////////////////
+
+============ Lab 3 Exercise 1 - One sided communication
+
+
+Lab3 Game of Life: NI = 200, NJ = 200, NSTEPS = 500, MPI world size = 10
+Saved life-1.gol
+Saved life-2.gol
+Saved life-3.gol
+Saved life-4.gol
+Saved life-5.gol
+Saved life-6.gol
+Saved life-7.gol
+Saved life-8.gol
+Saved life-9.gol
+Saved life-0.gol
+Number of live cells = 1886
+
+
+============ Lab 3 Exercise 2.1 - Topologies, game of life
+
+
+Lab3 Game of Life: NI = 200, NJ = 200, NSTEPS = 500, MPI world size = 10
+Saved life-1.gol
+Saved life-2.gol
+Saved life-3.gol
+Saved life-4.gol
+Saved life-5.gol
+Saved life-6.gol
+Saved life-7.gol
+Saved life-8.gol
+Saved life-9.gol
+Saved life-0.gol
+Number of live cells = 1886
+
+
+============ Lab 3 Exercise 2.2 - Topologies, simple 1D
+
+ 0: cart = 1, position = 0, plus_one = 1, minus_one = 31
+ 3: cart = 4, position = 3, plus_one = 4, minus_one = 2
+ 4: cart = 5, position = 4, plus_one = 5, minus_one = 3
+ 5: cart = 6, position = 5, plus_one = 6, minus_one = 4
+ 6: cart = 7, position = 6, plus_one = 7, minus_one = 5
+ 8: cart = 9, position = 8, plus_one = 9, minus_one = 7
+ 9: cart = 10, position = 9, plus_one = 10, minus_one = 8
+10: cart = 11, position = 10, plus_one = 11, minus_one = 9
+11: cart = 12, position = 11, plus_one = 12, minus_one = 10
+12: cart = 13, position = 12, plus_one = 13, minus_one = 11
+13: cart = 14, position = 13, plus_one = 14, minus_one = 12
+14: cart = 15, position = 14, plus_one = 15, minus_one = 13
+15: cart = 16, position = 15, plus_one = 16, minus_one = 14
+16: cart = 17, position = 16, plus_one = 17, minus_one = 15
+17: cart = 18, position = 17, plus_one = 18, minus_one = 16
+18: cart = 19, position = 18, plus_one = 19, minus_one = 17
+19: cart = 20, position = 19, plus_one = 20, minus_one = 18
+20: cart = 21, position = 20, plus_one = 21, minus_one = 19
+21: cart = 22, position = 21, plus_one = 22, minus_one = 20
+22: cart = 23, position = 22, plus_one = 23, minus_one = 21
+23: cart = 24, position = 23, plus_one = 24, minus_one = 22
+24: cart = 25, position = 24, plus_one = 25, minus_one = 23
+25: cart = 26, position = 25, plus_one = 26, minus_one = 24
+26: cart = 27, position = 26, plus_one = 27, minus_one = 25
+27: cart = 28, position = 27, plus_one = 28, minus_one = 26
+28: cart = 29, position = 28, plus_one = 29, minus_one = 27
+29: cart = 30, position = 29, plus_one = 30, minus_one = 28
+30: cart = 31, position = 30, plus_one = 31, minus_one = 29
+31: cart = 0, position = 31, plus_one = 0, minus_one = 30
+ 1: cart = 2, position = 1, plus_one = 2, minus_one = 0
+ 2: cart = 3, position = 2, plus_one = 3, minus_one = 1
+ 7: cart = 8, position = 7, plus_one = 8, minus_one = 6
+
+============ Lab 3 Exercise 3 - MPI I/O
+
+

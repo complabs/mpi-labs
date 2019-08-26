@@ -1,0 +1,210 @@
+/////////////////////////////////////////////////////////////////////////
+//                              LAB  1                                 //
+/////////////////////////////////////////////////////////////////////////
+
+============ Lab 1 Exercise 1: Run Hello, World
+
+Processor 1 of 32: Hello World!
+Processor 13 of 32: Hello World!
+Processor 14 of 32: Hello World!
+Processor 15 of 32: Hello World!
+Processor 0 of 32: Hello World!
+Processor 12 of 32: Hello World!
+Processor 28 of 32: Hello World!
+Processor 3 of 32: Hello World!
+Processor 4 of 32: Hello World!
+Processor 5 of 32: Hello World!
+Processor 6 of 32: Hello World!
+Processor 7 of 32: Hello World!
+Processor 19 of 32: Hello World!
+Processor 20 of 32: Hello World!
+Processor 22 of 32: Hello World!
+Processor 24 of 32: Hello World!
+Processor 27 of 32: Hello World!
+Processor 30 of 32: Hello World!
+Processor 31 of 32: Hello World!
+Processor 2 of 32: Hello World!
+Processor 8 of 32: Hello World!
+Processor 9 of 32: Hello World!
+Processor 10 of 32: Hello World!
+Processor 16 of 32: Hello World!
+Processor 21 of 32: Hello World!
+Processor 23 of 32: Hello World!
+Processor 29 of 32: Hello World!
+Processor 11 of 32: Hello World!
+Processor 17 of 32: Hello World!
+Processor 18 of 32: Hello World!
+Processor 25 of 32: Hello World!
+Processor 26 of 32: Hello World!
+
+============ Lab 1 Exercise 2: Send data across all processes
+
+0: Sending 77000
+1: Received 77000
+1: Forwarded 77001
+2: Received 77001
+2: Forwarded 77002
+3: Received 77002
+3: Forwarded 77003
+4: Received 77003
+4: Forwarded 77004
+5: Received 77004
+5: Forwarded 77005
+6: Received 77005
+6: Forwarded 77006
+7: Received 77006
+7: Forwarded 77007
+8: Received 77007
+8: Forwarded 77008
+9: Received 77008
+9: Forwarded 77009
+10: Received 77009
+10: Forwarded 77010
+11: Received 77010
+11: Forwarded 77011
+12: Received 77011
+12: Forwarded 77012
+13: Received 77012
+13: Forwarded 77013
+14: Received 77013
+14: Forwarded 77014
+15: Received 77014
+15: Forwarded 77015
+16: Received 77015
+16: Forwarded 77016
+17: Received 77016
+17: Forwarded 77017
+18: Received 77017
+18: Forwarded 77018
+19: Received 77018
+19: Forwarded 77019
+20: Received 77019
+20: Forwarded 77020
+21: Received 77020
+21: Forwarded 77021
+22: Received 77021
+22: Forwarded 77022
+23: Received 77022
+23: Forwarded 77023
+24: Received 77023
+24: Forwarded 77024
+25: Received 77024
+25: Forwarded 77025
+26: Received 77025
+26: Forwarded 77026
+27: Received 77026
+27: Forwarded 77027
+28: Received 77027
+28: Forwarded 77028
+29: Received 77028
+29: Forwarded 77029
+30: Received 77029
+30: Forwarded 77030
+31: Received 77030
+
+============ Lab 1 Exercise 3: Find pi using P2P Communication (Master/Worker)
+
+MPI task 4 has started...
+MPI task 9 has started...
+MPI task 10 has started...
+MPI task 14 has started...
+MPI task 29 has started...
+MPI task 6 has started...
+MPI task 17 has started...
+MPI task 2 has started...
+MPI task 7 has started...
+MPI task 0 has started...
+Using 32 tasks to compute pi
+MPI task 12 has started...
+MPI task 13 has started...
+MPI task 15 has started...
+MPI task 18 has started...
+MPI task 20 has started...
+MPI task 22 has started...
+MPI task 24 has started...
+MPI task 25 has started...
+MPI task 26 has started...
+MPI task 27 has started...
+MPI task 28 has started...
+MPI task 1 has started...
+MPI task 3 has started...
+MPI task 5 has started...
+MPI task 8 has started...
+MPI task 11 has started...
+MPI task 23 has started...
+MPI task 16 has started...
+MPI task 19 has started...
+MPI task 21 has started...
+MPI task 31 has started...
+MPI task 30 has started...
+1563 throws, average pi = 3.1605886116443
+3126 throws, average pi = 3.1605886116443
+4689 throws, average pi = 3.1537641288121
+6252 throws, average pi = 3.1791426743442
+7815 throws, average pi = 3.1641714651312
+9378 throws, average pi = 3.1601620814673
+10941 throws, average pi = 3.1532766657527
+12504 throws, average pi = 3.1465131158029
+14067 throws, average pi = 3.1529110684581
+15630 throws, average pi = 3.1559820857326
+
+============ Now run with 10 workers
+
+MPI task 0 has started...
+Using 10 tasks to compute pi
+MPI task 2 has started...
+MPI task 4 has started...
+MPI task 8 has started...
+MPI task 9 has started...
+MPI task 5 has started...
+MPI task 1 has started...
+MPI task 6 has started...
+MPI task 3 has started...
+MPI task 7 has started...
+5000 throws, average pi = 3.1616
+10000 throws, average pi = 3.1616
+15000 throws, average pi = 3.1506666666667
+20000 throws, average pi = 3.1578
+25000 throws, average pi = 3.1488
+30000 throws, average pi = 3.144
+35000 throws, average pi = 3.1396571428571
+40000 throws, average pi = 3.1399
+45000 throws, average pi = 3.1420444444444
+50000 throws, average pi = 3.14216
+
+============ Lab 1 Exercise 4: Use P2P in Parallel Search
+
+62
+183
+271
+291
+296
+
+============ Lab 1 Exercise 5: Use P2P in Game of Life
+
+
+Lab3 Game of Life: NI = 200, NJ = 200, NSTEPS = 500, MPI world size = 1
+Saved life.gol
+Number of live cells = 1886
+
+
+Lab3 Game of Life: NI = 200, NJ = 200, NSTEPS = 500, MPI world size = 2
+Saved life-1.gol
+Saved life-0.gol
+Number of live cells = 1886
+
+
+Lab3 Game of Life: NI = 200, NJ = 200, NSTEPS = 500, MPI world size = 10
+Saved life-3.gol
+Saved life-4.gol
+Saved life-5.gol
+Saved life-6.gol
+Saved life-7.gol
+Saved life-8.gol
+Saved life-9.gol
+Saved life-0.gol
+Saved life-1.gol
+Saved life-2.gol
+Number of live cells = 1886
+
+
