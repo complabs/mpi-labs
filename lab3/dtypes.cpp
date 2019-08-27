@@ -243,9 +243,10 @@ int main( int argc, char** argv )
 
     STL_Model_MPI model;
 
-    model.read  ( argc >= 2 ? argv[1] : "data/sphere.stl" );
-    model.write ( argc >= 3 ? argv[2] : "out.stl"         );
+    model.read ( argc >= 2 ? argv[1] : "data/sphere.stl" );
+    model.write( argc >= 3 ? argv[2] : "out.stl"         );
 
+    MPI_Barrier( MPI_COMM_WORLD );
     MPI_Finalize ();
 
     return 0;
