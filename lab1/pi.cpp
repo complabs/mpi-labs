@@ -31,11 +31,11 @@
 
 static inline double sqr( double x ) { return x * x; }
 
-static double dboard( int seed, int darts )
-{
-    std::default_random_engine generator( seed );
-    std::uniform_real_distribution<double> distribution(0.0,1.0);
+static std::default_random_engine generator;
+static std::uniform_real_distribution<double> distribution(0.0,1.0);
 
+static double dboard( int darts )
+{
     // Throw darts at the board
     //
     unsigned long score = 0;
@@ -81,10 +81,12 @@ int main( int argc, char** argv )
     //
     DARTS = ( DARTS + worldsz -1 ) / worldsz; // round up to world size
 
+    generator.seed( myrank );
+
     double avg_pi = 0;
     for( int i = 0; i < ROUNDS; ++i )
     {
-        double my_pi = dboard( i, DARTS );
+        double my_pi = dboard( DARTS );
 
         if( myrank != 0 )  // Slave
         {
