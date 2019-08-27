@@ -1,4 +1,6 @@
 
+UID=$(shell echo `hostname -s`.`id -u`)
+
 CXX=mpic++
 CXXFLAGS=-std=c++14 -Wall -O2
 CC=mpicc
@@ -53,13 +55,12 @@ run : all
 	cat test-ex.out
 
 stl : dtypes
+	mpirun -n 1 ./dtypes data/sphere.stl /tmp/$(UID).out1.stl
 	@echo
-	mpirun -n 1 ./dtypes data/sphere.stl out1.stl
+	@md5sum /tmp/$(UID).out1.stl data/sphere.stl
 	@echo
-	@md5sum out1.stl data/sphere.stl
+	mpirun -n 7 ./dtypes data/sphere.stl /tmp/$(UID).out2.stl
 	@echo
-	mpirun -n 32 ./dtypes data/sphere.stl out2.stl
-	@echo
-	@md5sum out2.stl data/sphere.stl
+	@md5sum /tmp/$(UID).out2.stl data/sphere.stl
 	@echo
 
