@@ -49,12 +49,12 @@ public:
         MPI_Type_commit( &COLUMN_VEC );
     }
 
-protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
+public: //////////////////// VIRTUAL MEMBERS //////////////////////////
 
     /** Initializes elements of oldc to 0 or 1.
      *  Populate only the local j's on the current rank.
      */
-    virtual void InitializeCells ()
+    virtual GameOfLife& InitializeCells ()
     {
         const int offset = myrank * NJ;
         for( int i = 1; i <= NI; ++i )
@@ -72,11 +72,15 @@ protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
                 }
             }
         }
+
+        return *this;
     }
+
+protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
 
     /** Exchanges the left-right boundary of the chunk.
      */
-    void exchangeBoundary_LeftRight ()
+    virtual void exchangeBoundary_LeftRight ()
     {
         if ( worldsz == 1 ) {
             GameOfLife::exchangeBoundary_LeftRight ();
@@ -199,7 +203,9 @@ int main( int argc, char** argv )
     }
 
     GameOfLife_Lab2( worldsz, myrank, total_NI, total_NJ, debug )
-        .Iterate( NSTEPS );
+        .InitializeCells ()
+        .Iterate( NSTEPS )
+        .FinalizeEvolution ();
 
     MPI_Barrier( MPI_COMM_WORLD );
     MPI_Finalize ();

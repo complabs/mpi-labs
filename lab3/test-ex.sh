@@ -11,13 +11,13 @@
 
 #SBATCH -o test-ex.out
 
-
 if [ ".$SLURM_CLUSTER_NAME" = ".tegner" ]; then
     module load gcc openmpi
     SRUN="mpirun --mca orte_base_help_aggregate 0 --mca  btl_openib_allow_ib true"
 elif [ ".$SLURM_CLUSTER_NAME" = ".beskow" ]; then
     SRUN=srun
 else
+    SLURM_CLUSTER_NAME=`hostname -s`
     SRUN=mpirun
 fi
 
@@ -50,17 +50,17 @@ echo
 
 $SRUN -n 32 ./hw-io
 
-# echo
-# echo "============ Lab 3 Exercise 4.1 - Bandwidth and latency between nodes"
-# echo
-# 
-# $SRUN -n 32 bw
-# 
-# echo
-# echo "============ Lab 3 Exercise 4.2 - Non-blocking bandwidth"
-# echo
-# 
-# $SRUN -n 32 bw-nb
+echo
+echo "============ Lab 3 Exercise 4.1 - Bandwidth and latency between nodes"
+echo
+
+$SRUN -n 32 bw > test-${SLURM_CLUSTER_NAME}-bw.out
+
+echo
+echo "============ Lab 3 Exercise 4.2 - Non-blocking bandwidth"
+echo
+
+$SRUN -n 32 bw-nb > test-${SLURM_CLUSTER_NAME}-bwnb.out
 
 echo
 

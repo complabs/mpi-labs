@@ -82,12 +82,12 @@ public:
     {
     }
 
-protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
+public: //////////////////// VIRTUAL MEMBERS //////////////////////////
 
     /** Initializes elements of oldc to 0 or 1.
      *  Populate only the local i's on the current rank.
      */
-    virtual void InitializeCells ()
+    virtual GameOfLife& InitializeCells ()
     {
         const int offset = myrank * NI;
         for( int i = 1; i <= worldsz * NI; ++i )
@@ -105,11 +105,29 @@ protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
                 }
             }
         }
+
+        return *this;
     }
 
+protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
+
     /** Exchanges the top-bottom boundary of the chunk.
+     *
+     *  Boundary conditions example:
+     *
+     *          NI = 4, NJ = 2           fix LR     fix TB
+     *                                     ->         ->
+     *              0 1 2 3        * * * *    * * * *    h G H g
+     *           0  h g h g        * A B *    b A B a    b A B a
+     *           1  b A B a        * C D *    d C D c    d C D c
+     *           2  d C D c        * * * *    * * * *    f E F e
+     *           3  f E F e
+     *           4  h G H g        * * * *    * * * *    d C D c
+     *           5  b a b a        * E F *    f E F e    f E F e
+     *                             * G H *    h G H g    h G H g
+     *                             * * * *    * * * *    b A B a
      */
-    void exchangeBoundary_TopBottom ()
+    virtual void exchangeBoundary_TopBottom ()
     {
         if ( worldsz == 1 ) {
             GameOfLife::exchangeBoundary_TopBottom ();
@@ -233,7 +251,9 @@ int main( int argc, char** argv )
     }
 
     GameOfLife_Lab1( worldsz, myrank, total_NI, total_NJ, debug )
-        .Iterate( NSTEPS );
+        .InitializeCells ()
+        .Iterate( NSTEPS )
+        .FinalizeEvolution ();
 
     MPI_Barrier( MPI_COMM_WORLD );
     MPI_Finalize ();

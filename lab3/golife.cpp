@@ -89,12 +89,12 @@ public:
         MPI_Win_free( &bottom_win );
     }
 
-protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
+public: //////////////////// VIRTUAL MEMBERS //////////////////////////
 
     /** Initializes elements of oldc to 0 or 1.
      *  Populate only the local i's on the current rank.
      */
-    virtual void InitializeCells ()
+    virtual GameOfLife& InitializeCells ()
     {
         const int offset = my_position * NI;
         for( int i = 1; i <= worldsz * NI; ++i )
@@ -112,7 +112,11 @@ protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
                 }
             }
         }
+
+        return *this;
     }
+
+protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
 
     /** Exchanges the top-bottom boundary of the chunk.
      */
@@ -189,7 +193,9 @@ int main( int argc, char** argv )
     }
 
     GameOfLife_Lab3( worldsz, myrank, total_NI, total_NJ, debug )
-        .Iterate( NSTEPS );
+        .InitializeCells ()
+        .Iterate( NSTEPS )
+        .FinalizeEvolution ();
 
     MPI_Barrier( MPI_COMM_WORLD );
     MPI_Finalize ();

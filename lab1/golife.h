@@ -1,32 +1,34 @@
 /**
-    Conway's Game of Life
+    @file golife.h   Conway's Game of Life
 
-    Serial implementation and the common MPI stub.
+    Contains: 
+      - class GameOfLife     : a serial implementation of the game of life
+      - class GameOfLife_MPI : a common MPI stub extension of GameOfLife
 */
 
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <cstdlib>
+
 #include <mpi.h>
 
 ///////////////////////////////////////////////////////////////////////////////
-/** Implements the serial version of Conway's Game of Life.
+/** Implements a serial version of Conway's Game of Life.
  *  This class can be instantiated on its own or inherited.
  */
 class GameOfLife
 {
 protected:
 
-    int   NI;     //!< Local NI
-    int   NJ;     //!< Local NJ
+    int   NI;     //!< Horizontal dimension (the number of rows)
+    int   NJ;     //!< Vertical dimension (the number of columns)
     int** oldc;   //!< Old states
     int** newc;   //!< New states
     int   stepNo; //!< Current step number (while iterating)
 
 public:
 
-    /** Constructs the chunk (allocates memory and initialized arrays).
+    /** Constructs the chunk (allocates a memory for the cells).
      */
     GameOfLife
     (
@@ -76,31 +78,14 @@ public:
 
     /**  Play the game of life
      */
-    void Iterate( int NSTEPS )
+    GameOfLife& Iterate( int NSTEPS )
     {
-        InitializeCells ();
-
         for( stepNo = 0; stepNo < NSTEPS; ++stepNo )
         {
             // Fix the  boundary conditions
             //
             exchangeBoundary_LeftRight ();
             exchangeBoundary_TopBottom ();
-            /*
-                Boundary conditions example:
-
-                NI = 4, NJ = 2           fix LR     mpi TB
-                                           ->         ->
-                    0 1 2 3        * * * *    * * * *    h G H g
-                 0  h g h g        * A B *    b A B a    b A B a
-                 1  b A B a        * C D *    d C D c    d C D c
-                 2  d C D c        * * * *    * * * *    f E F e
-                 3  f E F e
-                 4  h G H g        * * * *    * * * *    d C D c
-                 5  b a b a        * E F *    f E F e    f E F e
-                                   * G H *    h G H g    h G H g
-                                   * * * *    * * * *    b A B a
-            */
 
             // Update the cell states
             //
@@ -137,7 +122,7 @@ public:
             }
         }
 
-        FinalizeEvolution ();
+        return *this;
     }
 
     /** Dump the cell states to an output stream.
@@ -197,11 +182,11 @@ public:
         dumpCells( of );
     }
 
-protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
+public: //////////////////// VIRTUAL MEMBERS //////////////////////////
 
     /** Initializes elements of oldc to 0 or 1.
      */
-    virtual void InitializeCells ()
+    virtual GameOfLife& InitializeCells ()
     {
         // Populate only the local i's on the current rank.
         //
@@ -219,7 +204,19 @@ protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
                 }
             }
         }
+
+        return *this;
     }
+
+    /** Iterations are done. Sum the number of live cells and
+     *  save the file(s) depicting the obtained life.
+     */
+    virtual GameOfLife& FinalizeEvolution ()
+    {
+        return *this;
+    }
+
+protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
 
     /** Exchanges the left-right boundary of the chunk.
      */
@@ -245,13 +242,6 @@ protected: //////////////////// VIRTUAL MEMBERS //////////////////////////
             oldc[0][j]    = oldc[NI][j];
             oldc[NI+1][j] = oldc[1][j];
         }
-    }
-
-    /** Iterations are done. Sum the number of live cells and
-     *  save the file(s) depicting the obtained life.
-     */
-    virtual void FinalizeEvolution ()
-    {
     }
 };
 
@@ -284,7 +274,7 @@ public:
     /** The iterations are done. Sum the number of live cells and
      *  save the file(s) depicting the obtained life.
      */
-    void FinalizeEvolution ()
+    virtual GameOfLife& FinalizeEvolution ()
     {
         dumpCells(
             worldsz == 1 ? std::string("life.gol")
@@ -313,5 +303,7 @@ public:
             std::cout << "Number of live cells = " << sum_alive
                 << std::endl << std::endl;
         }
+
+        return *this;
     }
 };

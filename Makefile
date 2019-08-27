@@ -1,19 +1,25 @@
 
 all: 
-	@echo -e "\nlab 1:"
+	@echo
+	@echo "lab 1:"
 	@$(MAKE) --no-print-directory -C lab1 all
-	@echo -e "\nlab 2:"
+	@echo
+	@echo "lab 2:"
 	@$(MAKE) --no-print-directory -C lab2 all
-	@echo -e "\nlab 3:"
+	@echo
+	@echo "lab 3:"
 	@$(MAKE) --no-print-directory -C lab3 all
 	@echo
 
 clean: 
-	@echo -e "\nlab 1:"
+	@echo
+	@echo "lab 1:"
 	@$(MAKE) --no-print-directory -C lab1 clean
-	@echo -e "\nlab 2:"
+	@echo
+	@echo "lab 2:"
 	@$(MAKE) --no-print-directory -C lab2 clean
-	@echo -e "\nlab 3:"
+	@echo
+	@echo "lab 3:"
 	@$(MAKE) --no-print-directory -C lab3 clean
 	@echo
 
