@@ -47,10 +47,10 @@ int main( int argc, char** argv )
     MPI_Cart_shift( cart_comm, 0, -1, &cart_id, &minus_one );
 
     std::cout << std::setw(2) << myrank
-        << ": cart = " << cart_id
-        << ", position = " << cart_position
-        << ", plus_one = " << plus_one
-        << ", minus_one = " << minus_one << std::endl;
+        << ": cart = " << std::setw(2) << cart_id
+        << ", position = " << std::setw(2) << cart_position
+        << ", plus_one = " << std::setw(2) << plus_one
+        << ", minus_one = " << std::setw(2) << minus_one << std::endl;
 
     MPI_Finalize ();
 

@@ -45,7 +45,7 @@ echo
 $SRUN -n 32 ./s1d-topology
 
 echo
-echo "============ Lab 3 Exercise 3 - MPI I/O"
+echo "============ Lab 3 Exercise 3 - MPI I/O (simple)"
 echo
 
 $SRUN -n 32 ./hw-io
@@ -63,4 +63,21 @@ echo
 $SRUN -n 32 bw-nb > test-${SLURM_CLUSTER_NAME}-bwnb.out
 
 echo
+echo "============ Lab 3 Exercise 4.3 - Latency"
+echo
 
+$SRUN -n 32 latency > test-${SLURM_CLUSTER_NAME}-lat.out
+
+echo
+echo "============ Lab 3 New Exercise 1 - MPI I/O (STL file)"
+echo
+
+$SRUN -n 1 ./dtypes data/sphere.stl out1.stl
+md5sum out1.stl data/sphere.stl
+
+echo 
+
+$SRUN -n 32 ./dtypes data/sphere.stl out2.stl
+md5sum out2.stl data/sphere.stl
+
+echo

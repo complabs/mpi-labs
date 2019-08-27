@@ -19,7 +19,17 @@
 */
 
 #include <iostream>
+#include <iomanip>
 #include <mpi.h>
+
+std::ostream& indent( std::ostream& os, int myrank )
+{
+    for( int i = 0; i < myrank; ++i ) {
+        os << "    ";
+    }
+    os << std::setw(2) << myrank << ": ";
+    return std::cout;
+}
 
 int main( int argc, char** argv )
 {
@@ -35,11 +45,10 @@ int main( int argc, char** argv )
     if( myrank == 0 ) // master = the first
     {
         int value = 77 * 1000;
-        std::cout << myrank << ": Sending " << value << std::endl;
-        MPI_Send( &value, 1, MPI_INT, myrank + 1, 0, MPI_COMM_WORLD );
-
         MPI_Request request;
-        MPI_Isend( &value, 1, MPI_INT, myrank + 1, 0, MPI_COMM_WORLD,&request );
+        MPI_Isend( &value, 1, MPI_INT, myrank + 1, 0, MPI_COMM_WORLD, &request );
+
+        indent( std::cout, myrank ) << "Send " << value << std::endl;
     }
     else // ranks in the chain
     {
@@ -47,24 +56,22 @@ int main( int argc, char** argv )
         MPI_Request request;
         MPI_Irecv( &value, 1, MPI_INT, myrank - 1, 0, MPI_COMM_WORLD, &request );
 
-        if ( race )
-        {
-            std::cout << myrank << ": After MPI_Irecv (nowait) " << value << std::endl;
-        }
-        else
+        indent( std::cout, myrank ) << "Irecv " << value << std::endl;
+
+        if ( ! race )
         {
             MPI_Status status;
             MPI_Wait( &request, &status );
 
-            std::cout << myrank << ": Received " << value << std::endl;
+            indent( std::cout, myrank ) << "Wait " << value << std::endl;
         }
 
         ++value;
         if( myrank < worldsz - 1 )
         {
-            std::cout << myrank << ": Forwarded " << value << std::endl;
             MPI_Request request2;
             MPI_Isend( &value, 1, MPI_INT, myrank + 1, 0, MPI_COMM_WORLD, &request2 );
+            indent( std::cout, myrank ) << "Send " << value << std::endl;
         }
     }
 

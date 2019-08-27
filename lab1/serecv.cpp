@@ -13,7 +13,17 @@
 */
 
 #include <iostream>
+#include <iomanip>
 #include <mpi.h>
+
+std::ostream& indent( std::ostream& os, int myrank )
+{
+    for( int i = 0; i < myrank; ++i ) {
+        os << "    ";
+    }
+    os << std::setw(2) << myrank << ": ";
+    return std::cout;
+}
 
 int main( int argc, char** argv )
 {
@@ -26,21 +36,20 @@ int main( int argc, char** argv )
     if( myrank == 0 )
     {
         int value = 77 * 1000;
-        std::cout << myrank << ": Sending " << value << std::endl;
         MPI_Send( &value, 1, MPI_INT, myrank + 1, 0, MPI_COMM_WORLD );
+        indent( std::cout, myrank ) << "Send " << value << std::endl;
     }
     else
     {
         int value = -1;
         MPI_Status status;
         MPI_Recv( &value, 1, MPI_INT, myrank - 1, 0, MPI_COMM_WORLD, &status );
-
-        std::cout << myrank << ": Received " << value << std::endl;
+        indent( std::cout, myrank ) << "Recv " << value << std::endl;
 
         if( myrank < worldsz - 1 ) {
             ++value;
-            std::cout << myrank << ": Forwarded " << value << std::endl;
             MPI_Send( &value, 1, MPI_INT, myrank + 1, 0, MPI_COMM_WORLD );
+            indent( std::cout, myrank ) << "Send " << value << std::endl;
         }
     }
 

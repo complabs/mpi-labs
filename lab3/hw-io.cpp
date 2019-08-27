@@ -12,14 +12,13 @@
     buffer, and then use the MPI_File_write_at function.
 */
 
-#include <cstdio>
-#include <cstring>
+#include <sstream>
+#include <iomanip>
+#include <string>
 #include <mpi.h>
 
 int main( int argc, char** argv )
 {
-    const int buffer_len = 100;
-
     MPI_Init( &argc, &argv );
 
     int myrank, worldsz;
@@ -32,18 +31,21 @@ int main( int argc, char** argv )
     const char* filename = "result.txt";
 
     MPI_File_open( MPI_COMM_WORLD,
-                   filename, MPI_MODE_CREATE|MPI_MODE_WRONLY,
+                   filename, MPI_MODE_CREATE | MPI_MODE_WRONLY,
                    MPI_INFO_NULL, &fp );
 
-    // Write the text
+    // Write the text into a string stream
     //
-    char buffer[ buffer_len ];
-    sprintf( buffer, "Rank: %3d Hello World!\n", myrank );
+    std::ostringstream msg;
+    msg << "Rank " << std::setw(3) << myrank << " Hello World!" << std::endl;
 
-    MPI_Offset offset = myrank * strlen( buffer );
+    // Copy the string stream result to a buffer
+    //
+    std::string buf = msg.str();
+    MPI_Offset offset = myrank * buf.size();
 
     MPI_Status status;
-    MPI_File_write_at( fp, offset, &buffer, strlen(buffer), MPI_CHAR, &status );
+    MPI_File_write_at( fp, offset, buf.c_str(), buf.size(), MPI_CHAR, &status );
 
     // Close the file
     //

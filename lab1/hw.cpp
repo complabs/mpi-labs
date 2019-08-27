@@ -9,6 +9,7 @@
 */
 
 #include <iostream>
+#include <iomanip>
 #include <mpi.h>
 
 int main( int argc, char** argv )
@@ -19,7 +20,9 @@ int main( int argc, char** argv )
     MPI_Comm_rank( MPI_COMM_WORLD, &myrank );
     MPI_Comm_size( MPI_COMM_WORLD, &worldsz );
 
-    std::cout << "Processor " << myrank << " of " << worldsz
+    std::cout 
+        << "Process " << std::setw(2) << myrank 
+        << " of " << std::setw(2) << worldsz
         << ": Hello World!" << std::endl;
 
     MPI_Finalize ();

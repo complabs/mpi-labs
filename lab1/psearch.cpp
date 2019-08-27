@@ -67,6 +67,9 @@ int main( int argc, char** argv )
     // A tag received from slaves at the end of work
     //
     const int MSG_QUIT_TAG = 77;
+    const int MSG_HEAD_TAG = 78;
+    const int MSG_DATA_TAG = 79;
+    const int MSG_INDX_TAG = 80;
 
     if( myrank == 0 ) // Master
     {
@@ -91,12 +94,12 @@ int main( int argc, char** argv )
                 i * chunk_size,
                 i == nr_slaves - 1 ? lastchunk_size : chunk_size
             };
-            MPI_Send( header, 3, MPI_INT, i+1, 9, MPI_COMM_WORLD );
+            MPI_Send( header, 3, MPI_INT, i+1, MSG_HEAD_TAG, MPI_COMM_WORLD );
 
             // send data
             //
             MPI_Send( data.b + header[1], header[2],
-                      MPI_INT, i+1, 11, MPI_COMM_WORLD);
+                      MPI_INT, i+1, MSG_DATA_TAG, MPI_COMM_WORLD);
         }
 
         int nr_completed = 0;
@@ -122,7 +125,7 @@ int main( int argc, char** argv )
         //
         int header[3];
         MPI_Status status;
-        MPI_Recv( header, 3, MPI_INT, 0, 9, MPI_COMM_WORLD, &status );
+        MPI_Recv( header, 3, MPI_INT, 0, MSG_HEAD_TAG, MPI_COMM_WORLD, &status );
 
         int  target   = header[0];
         int  b_offset = header[1];
@@ -131,7 +134,7 @@ int main( int argc, char** argv )
 
         // Receive the data
         //
-        MPI_Recv( b_data, b_len, MPI_INT, 0, 11, MPI_COMM_WORLD, &status );
+        MPI_Recv( b_data, b_len, MPI_INT, 0, MSG_DATA_TAG, MPI_COMM_WORLD, &status );
 
         // Process the data
         //
@@ -140,7 +143,7 @@ int main( int argc, char** argv )
             if( b_data[i] == target )
             {
                 int index = b_offset + i + 1;
-                MPI_Send( &index, 1, MPI_INT, 0, 19, MPI_COMM_WORLD );
+                MPI_Send( &index, 1, MPI_INT, 0, MSG_INDX_TAG, MPI_COMM_WORLD );
             }
         }
 
