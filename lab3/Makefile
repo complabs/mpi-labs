@@ -17,11 +17,14 @@ else ifeq ($(CRAY_PRGENVGNU), loaded)
    CC=cc
 endif
 
-all : golife-win golife-topology hw-io s1d-topology bw bw-nb
+all : dtypes golife-win golife-topology hw-io s1d-topology bw bw-nb latency
 
 clean :
-	rm -rf golife-win golife-topology s1d-topology hw-io bw bw-nb
-	rm -rf *.gol core *.save-failed
+	rm -rf dtypes golife-win golife-topology s1d-topology hw-io bw bw-nb latency
+	rm -rf *.gol core *.save-failed out.stl *.out out*.stl
+
+dtypes : dtypes.cpp 
+	$(CXX) $(CXXFLAGS) dtypes.cpp -o dtypes
 
 golife-win : golife.cpp ../lab1/golife.h
 	$(CXX) $(CXXFLAGS) golife.cpp -o golife-win
@@ -41,7 +44,22 @@ bw : bw.c
 bw-nb : bw-nb.c
 	$(CC) $(CCFLAGS) bw-nb.c -o bw-nb
 
+latency : latency.c
+	$(CC) $(CCFLAGS) latency.c -o latency
+
 run : all
 	sbatch test-ex.sh 
 	qtop
 	cat test-ex.out
+
+stl : dtypes
+	@echo
+	mpirun -n 1 ./dtypes data/sphere.stl out1.stl
+	@echo
+	@md5sum out1.stl data/sphere.stl
+	@echo
+	mpirun -n 32 ./dtypes data/sphere.stl out2.stl
+	@echo
+	@md5sum out2.stl data/sphere.stl
+	@echo
+

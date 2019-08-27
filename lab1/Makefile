@@ -16,7 +16,7 @@ all : hw serecv pi psearch golife
 
 clean :
 	rm -rf hw serecv pi psearch golife
-	rm -rf *.gol core *.save-failed
+	rm -rf *.gol core *.save-failed *.out
 
 hw : hw.cpp
 	$(CXX) $(CXXFLAGS) hw.cpp -o hw
