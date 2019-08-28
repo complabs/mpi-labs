@@ -1,0 +1,52 @@
+salloc -N 2 --ntasks-per-node=1
+
+******************** MPI Bandwidth Test ********************
+Message start size= 100000 bytes
+Message finish size= 1000000 bytes
+Incremented by 100000 bytes per iteration
+Roundtrips per iteration= 100
+MPI_Wtick resolution = 1.000000e-09
+************************************************************
+task    0 is on nid00006 partner=   1
+task    1 is on nid00007 partner=   0
+************************************************************
+***Message size:   100000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    11335.96 / 10986.44 / 63.00 
+   OVERALL AVERAGES:          11335.96 / 10986.44 / 63.00 
+
+***Message size:   200000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    12905.55 / 12568.97 / 8104.94 
+   OVERALL AVERAGES:          12905.55 / 12568.97 / 8104.94 
+
+***Message size:   300000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    13457.66 / 13210.73 / 10989.44 
+   OVERALL AVERAGES:          13457.66 / 13210.73 / 10989.44 
+
+***Message size:   400000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    13808.41 / 13660.40 / 11732.32 
+   OVERALL AVERAGES:          13808.41 / 13660.40 / 11732.32 
+
+***Message size:   500000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    14027.77 / 13867.44 / 12018.06 
+   OVERALL AVERAGES:          14027.77 / 13867.44 / 12018.06 
+
+***Message size:   600000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    14138.10 / 13958.37 / 12582.91 
+   OVERALL AVERAGES:          14138.10 / 13958.37 / 12582.91 
+
+***Message size:   700000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    14287.17 / 14154.66 / 12682.56 
+   OVERALL AVERAGES:          14287.17 / 14154.66 / 12682.56 
+
+***Message size:   800000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    14308.93 / 14222.96 / 12831.52 
+   OVERALL AVERAGES:          14308.93 / 14222.96 / 12831.52 
+
+***Message size:   900000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    14380.47 / 14305.19 / 12949.82 
+   OVERALL AVERAGES:          14380.47 / 14305.19 / 12949.82 
+
+***Message size:  1000000 *** best  /  avg  / worst (MB/sec)
+   task pair:    0 -    1:    14438.22 / 14286.52 / 12729.30 
+   OVERALL AVERAGES:          14438.22 / 14286.52 / 12729.30 
+
