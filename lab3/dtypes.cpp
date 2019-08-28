@@ -17,20 +17,22 @@
         822aba6dc20cc0421f92ad50df95464c  data/sphere.stl
 
 
-    STL file format:
+    STL file format:    (all fields are little endian in the file)
     ```
-        UINT8[80] – Header
-        UINT32 – Number of triangles
+        UINT8[80]       – Header
+        UINT32          – Number of triangles
 
         foreach triangle
-        REAL32[3] – Normal vector
-        REAL32[3] – Vertex 1
-        REAL32[3] – Vertex 2
-        REAL32[3] – Vertex 3
-        UINT16 – Attribute byte count
+            REAL32[3]   – Normal vector
+            REAL32[3]   – Vertex 1
+            REAL32[3]   – Vertex 2
+            REAL32[3]   – Vertex 3
+            UINT16      – Attribute byte count
         end
     ```
     @see: https://en.wikipedia.org/wiki/STL_(file_format
+
+    @warning: This code works only on a little endian machine.
 */
 
 #include <iostream>
@@ -254,23 +256,24 @@ public:
         MPI::Aint offsets[2];
         MPI::Datatype oldtypes[2];
 
-        // Setup description of the 4*3 MPI_FLOAT
-        // This block covers: 'n[3], v1[3], v2[3], v3[3]'
-        //
-        offsets[0] = 0;
-        oldtypes[0] = MPI::FLOAT;
-        blockcounts[0] = 4 * 3;
-
         // Need to first figure offset by getting size of MPI_FLOAT
+        //
         MPI::Aint lb, extent;
         MPI::FLOAT.Get_extent( lb, extent );
 
-        // Setup description of the 1 MPI_INT field
-        // This block covers: 'attrib'
+        // Setup description of the 4*3 MPI_FLOAT
+        // This block covers the fields: n[3], v1[3], v2[3], and v3[3]
         //
-        offsets[1] = 4 * 3 * extent;
-        oldtypes[1] = MPI::UNSIGNED_SHORT;
-        blockcounts[1] = 1;
+        offsets     [0] = 0;
+        oldtypes    [0] = MPI::FLOAT;
+        blockcounts [0] = 4 * 3;
+
+        // Setup description of the 1 MPI_INT field
+        // This block covers the field `attrib`
+        //
+        offsets     [1] = 4 * 3 * extent;
+        oldtypes    [1] = MPI::UNSIGNED_SHORT;
+        blockcounts [1] = 1;
 
         // Define structured type and commit it
         //
