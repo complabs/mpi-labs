@@ -464,10 +464,13 @@ int main( int argc, char** argv )
 
     if( MPI::COMM_WORLD.Get_rank () == 0 )
     { 
-        std::cout << std::endl << "*** dtypes: infname = " << infname
-            << ", outfname = " << outfname << ", useClass = " 
+        std::cout << std::endl << "*** dtypes is running; parameters:" << std::endl
+            << "    infname = " << infname << "," << std::endl
+            << "    outfname = " << outfname << "," << std::endl
+            << "    useClass = " 
             << ( useClass == 2 ? "MPI (DT)" : useClass == 1 ? "MPI (Byte)" : "Serial" )
-            << ", reps = " << reps << std::endl;
+            << ", reps = " << reps << "," << std::endl
+            << "    MPI world size = " << MPI::COMM_WORLD.Get_size () << std::endl;
    }
 
     double sumT = 0;
@@ -511,7 +514,7 @@ int main( int argc, char** argv )
 
             if( n == 0 ) {
                 std::cout << std::endl
-                    << "Rep#       T1               T2            deltaT" << std::endl;
+                    << "Rep#        T1              T2            deltaT" << std::endl;
             }
 
             std::cout << std::setw(4) << n << "  " << std::fixed //<< std::setfill( '0' )
