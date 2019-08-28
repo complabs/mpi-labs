@@ -73,11 +73,13 @@ echo "============ Lab 3 New Exercise 1 - MPI I/O (STL file)"
 echo
 
 $SRUN -n 1 ./dtypes data/sphere.stl out1.stl
+echo
 md5sum out1.stl data/sphere.stl
 
 echo 
 
-$SRUN -n 32 ./dtypes data/sphere.stl out2.stl
+$SRUN -n 7 ./dtypes data/sphere.stl out2.stl
+echo
 md5sum out2.stl data/sphere.stl
 
 echo

@@ -332,7 +332,7 @@ public:
         // if( pe_rank == 0 ) // everyone must read header
         {
             MPI::Status status;
-            fp.Read_at_all( offset, &n_tri, len, MPI::BYTE, status );
+            fp.Read_at_all( offset, &n_tri, 1, MPI::INT, status );
             debug( "readN", offset, len );
 
             // Allocate memory for triangles
@@ -400,7 +400,7 @@ public:
         if( pe_rank == 0 ) 
         {
             MPI::Status status;
-            fp.Write_at( offset, &n_tri, len, MPI::BYTE, status );
+            fp.Write_at( offset, &n_tri, 1, MPI::INT, status );
             debug( "write", offset, len );
         }
         offset += len;
