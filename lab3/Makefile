@@ -59,8 +59,10 @@ stl : dtypes
 	@echo
 	@md5sum /tmp/$(UID).out1.stl data/sphere.stl
 	@echo
-	mpirun -n 7 ./dtypes data/sphere.stl /tmp/$(UID).out2.stl
+	mpirun -n 7 ./dtypes data/sphere.stl /tmp/$(UID).out2.stl 2
 	@echo
 	@md5sum /tmp/$(UID).out2.stl data/sphere.stl
+	@echo
+	mpirun -n 7 ./dtypes data/sphere.stl /tmp/$(UID).out2.stl 2 10
 	@echo
 

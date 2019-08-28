@@ -54,40 +54,43 @@ public:
 
 protected:
 
+    /** A triangle STL element
+     */
     struct __attribute__((packed)) Triangle
     {
-        float n[3];         //!< Normal vector
-        float v1[3];        //!< Vertex 1
-        float v2[3];        //!< Vertex 2
-        float v3[3];        //!< Vertex 3 */
+        float    n  [3];    //!< Normal vector
+        float    v1 [3];    //!< Vertex 1
+        float    v2 [3];    //!< Vertex 2
+        float    v3 [3];    //!< Vertex 3 */
         uint16_t attrib;    //!< Attribute byte count
     };
 
-    uint32_t   n_tri;           //!< Number of triangles
-    Triangle*  tri;             //!< Triangles
-    char       hdr[HDR_SIZE];   //!< Header
+    char      hdr[HDR_SIZE];   //!< Header
+    uint32_t  n_tri;           //!< Number of triangles
+
+    Triangle* tri;             //!< Triangles
 
     ///////////////////////////////////////////////////////////////////////////
 
-    static void debug( const char* prefix, MPI::Offset offset, size_t len )
+    bool debugMode;
+
+    void debug( const char* info, MPI::Offset offset, size_t len )
     {
-        std::cout << std::setw(2) << MPI::COMM_WORLD.Get_rank () 
-            << ": " << prefix << " "  \
-            << std::setw(7) << offset << " -- "  \
-            << std::setw(7) << offset + len - 1 \
-            << ", len = " << len << " octets" << std::endl;
+        if( debugMode )
+        {
+            std::cout << std::setw(2) << MPI::COMM_WORLD.Get_rank () 
+                << ": " << info << " "  \
+                << std::setw(7) << offset << " -- "  \
+                << std::setw(7) << offset + len - 1 \
+                << ", len = " << len << " octets" << std::endl;
+        }
     }
 
 public:
 
     STL_Model ()
-        : n_tri( 0 ), tri( NULL )
+        : n_tri( 0 ), tri( NULL ), debugMode( false )
     {
-        if ( MPI::COMM_WORLD.Get_rank() == 0 ) {
-            std::cout << std::endl << "STL header size = " << HDR_SIZE 
-                << std::endl << "sizeof(Triangle) = " << sizeof(Triangle )
-                << std::endl;
-        }
     }
 
     ~STL_Model ()
@@ -97,14 +100,22 @@ public:
         }
     }
 
+    void setDebug( bool flag )
+    {
+        debugMode = flag;
+    }
+
     virtual void read( const char* fname )
     {
         FILE* fp = fopen( fname, "rb" );
 
         int pe_rank = MPI::COMM_WORLD.Get_rank ();
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << std::endl 
                 << "Reading STL file: " << fname << std::endl;
+            std::cout << std::endl << "STL header size = " << HDR_SIZE 
+                << std::endl << "sizeof(Triangle) = " << sizeof(Triangle )
+                << std::endl;
         }
 
         // Read STL header
@@ -122,7 +133,7 @@ public:
         // Read how m   any triangles the file contains
         //
         rc = fread( &n_tri, sizeof(uint32_t), 1, fp);
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << "Found: " << n_tri << " triangles" << std::endl;
         }
 
@@ -136,7 +147,7 @@ public:
         }
 
         fclose( fp );
-        if (pe_rank == 0) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << "Done reading." << std::endl;
         }
     }
@@ -152,7 +163,7 @@ public:
         }
 
         FILE* fp = fopen( fname, "wb" );
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << std::endl << "Writing STL file: " << fname << std::endl;
         }
 
@@ -170,13 +181,17 @@ public:
 
         fclose( fp );
 
-        std::cout << "Done writing." << std::endl;
+        if( pe_rank == 0 && debugMode ) {
+            std::cout << "Done writing." << std::endl;
+        }
     }
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 
-class STL_Model_MpiSimple : public STL_Model
+/** An implementation where write is using MPI::BYTE
+ */
+class STL_Model_MpiByte : public STL_Model
 {
 public:
 
@@ -189,7 +204,7 @@ public:
                    MPI::INFO_NULL );
 
         int pe_rank = MPI::COMM_WORLD.Get_rank ();
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << std::endl << "MPI (Simple) Writing STL file: " 
                 << fname << std::endl;
         }
@@ -235,7 +250,7 @@ public:
         //
         fp.Close ();
 
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << "Done writing." << std::endl;
         }
     }
@@ -243,6 +258,8 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** An implementation where both read and write are using MPI:Datatype
+ */
 class STL_Model_MpiDT : public STL_Model
 {
     MPI::Datatype MPI_Triangle;
@@ -288,7 +305,7 @@ public:
 
         // Report creation
         //
-        if ( MPI::COMM_WORLD.Get_rank() == 0 ) {
+        if ( MPI::COMM_WORLD.Get_rank() == 0 && debugMode ) {
             std::cout << "MPI_Triangle extent = " << extent << std::endl;
             MPI_TrianglePacked.Get_extent( lb, extent );
             std::cout << "MPI_TrianglePacked extent = " << extent << std::endl;
@@ -304,9 +321,12 @@ public:
                    MPI::INFO_NULL );
 
         int pe_rank = MPI::COMM_WORLD.Get_rank ();
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << std::endl 
                 << "MPI (DT) Reading STL file: " << fname << std::endl;
+            std::cout << std::endl << "STL header size = " << HDR_SIZE 
+                << std::endl << "sizeof(Triangle) = " << sizeof(Triangle )
+                << std::endl;
         }
 
         // Read STL header
@@ -344,7 +364,7 @@ public:
         }
         offset += len;
 
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << "Found: " << n_tri << " triangles" << std::endl;
         }
 
@@ -364,7 +384,7 @@ public:
         //
         fp.Close ();
 
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << "Done reading." << std::endl;
         }
 
@@ -380,7 +400,7 @@ public:
                    MPI::INFO_NULL );
 
         int pe_rank = MPI::COMM_WORLD.Get_rank ();
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << std::endl << "MPI (DT) Writing STL file: "
                 << fname << std::endl;
         }
@@ -426,7 +446,7 @@ public:
         //
         fp.Close ();
 
-        if( pe_rank == 0 ) {
+        if( pe_rank == 0 && debugMode ) {
             std::cout << "Done writing." << std::endl;
         }
     }
@@ -435,29 +455,77 @@ public:
 
 int main( int argc, char** argv )
 {
-    const char* infname  = argc >= 2 ? argv[1] : "data/sphere.stl";
-    const char* outfname = argc >= 3 ? argv[2] : "out.stl";
-    int classType = argc >= 4 ? atoi( argv[3] ) : 2;
+    const char* infname  = argc >= 2 ? argv[1]         : "data/sphere.stl" ;
+    const char* outfname = argc >= 3 ? argv[2]         : "out.stl"         ;
+    const int   useClass = argc >= 4 ? atoi( argv[3] ) : 2                 ;
+    const int   reps     = argc >= 5 ? atoi( argv[4] ) : 1                 ;
 
     MPI::Init( argc, argv );
 
-    if( classType == 2 )
+    if( MPI::COMM_WORLD.Get_rank () == 0 )
+    { 
+        std::cout << std::endl << "*** dtypes: infname = " << infname
+            << ", outfname = " << outfname << ", useClass = " 
+            << ( useClass == 2 ? "MPI (DT)" : useClass == 1 ? "MPI (Byte)" : "Serial" )
+            << ", reps = " << reps << std::endl;
+   }
+
+    double sumT = 0;
+    for( int n = 0; n < reps; ++n )
     {
-        STL_Model_MpiDT model;
-        model.read( infname );
-        model.write( outfname );
+        double T1, T2;
+        if( useClass == 2 ) // Test STL_Model_MpiDT
+        {
+            STL_Model_MpiDT model;
+            model.read( infname );
+            model.setDebug( reps == 1 );
+            T1 = MPI_Wtime ();
+            model.write( outfname );
+            T2 = MPI_Wtime ();
+        }
+        else if ( useClass == 1 ) // Test STL_Model_MpiByte
+        {
+            STL_Model_MpiByte model;
+            model.read( infname );
+            model.setDebug( reps == 1 );
+            T1 = MPI_Wtime ();
+            model.write( outfname );
+            T2 = MPI_Wtime ();
+        }
+        else // Test STL_Model (base class, serial)
+        {
+            STL_Model model;
+            model.read( infname );
+            model.setDebug( reps == 1 );
+            T1 = MPI_Wtime ();
+            model.write( outfname );
+            T2 = MPI_Wtime ();
+        }
+
+        // Calculate round trip time and print
+        //
+        if( MPI::COMM_WORLD.Get_rank () == 0 )
+        {
+            double deltaT = T2 - T1;
+            sumT += deltaT;
+
+            if( n == 0 ) {
+                std::cout << std::endl
+                    << "Rep#       T1               T2            deltaT" << std::endl;
+            }
+
+            std::cout << std::setw(4) << n << "  " << std::fixed //<< std::setfill( '0' )
+                << std::setw(14) << std::setprecision(8) << T1 << "  "
+                << std::setw(14) << std::setprecision(8) << T2 << "  "
+                << std::setw(2) << std::setprecision(8) << deltaT
+                << std::endl;
+        }
     }
-    else if ( classType == 1 )
+
+    if( MPI::COMM_WORLD.Get_rank () == 0 ) 
     {
-        STL_Model_MpiSimple model;
-        model.read( infname );
-        model.write( outfname );
-    }
-    else
-    {
-        STL_Model model;
-        model.read( infname );
-        model.write( outfname );
+        double avgT = sumT * 1e6 / reps;
+        std::cout << std::endl << std::setprecision(2) << "*** avgT = " << avgT << " us" << std::endl;
     }
 
     MPI::COMM_WORLD.Barrier ();

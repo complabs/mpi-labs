@@ -83,3 +83,11 @@ echo
 md5sum out2.stl data/sphere.stl
 
 echo
+
+$SRUN -n 10 ./dtypes data/sphere.stl out2.stl 2 10
+$SRUN -n 20 ./dtypes data/sphere.stl out2.stl 2 10
+$SRUN -n 30 ./dtypes data/sphere.stl out2.stl 2 10
+
+echo
+
+echo
